@@ -1,11 +1,10 @@
 package com.gma.contatoapi.resource;
 
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,32 +29,7 @@ public class ContatoResource {
 	@Autowired
 	private ContatoRepository _contatoRepository;
 	
-
-	@RequestMapping(value = "/contatos", method = RequestMethod.GET, produces="application/json")
-	public ResponseEntity<Object>  listar(){
-		log.info("=======================GMA---> lista recurso");
 	
-
-		List<Contato> lstContato=  this._contatoRepository.findAll();
-		
-		 
-		
-		List<ContatoDTO> lstContatoDTO=new ArrayList<>();
-		
-//		for(Contato item: lstContato) {
-//			lstContatoDTO.add(new ContatoDTO(item.getId(),item.getNome(),item.getCanal().getCanal()));
-//		}
-		
-		lstContatoDTO.add(new ContatoDTO(1L,"Teste 1",CanalEnum.Email));
-		lstContatoDTO.add(new ContatoDTO(2L,"Teste 2",CanalEnum.Celular));
-		lstContatoDTO.add(new ContatoDTO(3L,"Teste 3",CanalEnum.Fixo));
-		lstContatoDTO.add(new ContatoDTO(3L,"Teste 4",CanalEnum.Fixo));
-		
-		return   ResponseEntity.ok().body(lstContato);
-	}
-	
-	
-
 	@RequestMapping(value = "/contatos/{id}", method = RequestMethod.GET, produces="application/json")
 	public ResponseEntity<Object>  buscar( @PathVariable("id") Long id){
 		log.info("=======================GMA---> Buscar  id:"+id);
@@ -77,7 +51,19 @@ public class ContatoResource {
 		}
 		
 	}
+
 	
+	//{{baseUrl}}/?size=5&page=1&sort=nome
+
+	@RequestMapping(value = "/contatos", method = RequestMethod.GET, produces="application/json")
+	public ResponseEntity<Object>  listarPag(Pageable pag){
+		log.info("=======================GMA---> lista recurso");
+	
+		Page<Contato> lstContato=  this._contatoRepository.findAll(pag );
+		
+		
+		return   ResponseEntity.ok().body(lstContato);
+	}
 	
 	
 	

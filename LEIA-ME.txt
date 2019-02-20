@@ -31,3 +31,16 @@
    5.1. Atencao [contatoapigma-1.0.0.jar] e para o exemplo da versao 1.0.0
 
 6. Executar os testes no [postman].   
+
+========
+
+. Baixando projeto do github
+. Requisito: [ Git ] 
+
+1. Va para o sistema operacional
+2. Criar pasta [ javawork ]
+3. Entre na pasta [ javawork ]
+4. Executar : git clone https://github.com/carguimaraes/contatoapigma.git
+
+
+

@@ -18,38 +18,51 @@ public class Contato {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
-	 
 	@Enumerated(EnumType.STRING)
-	private CanalEnum canal; 
+	private CanalEnum canal;
+	private String valor;
+	private String obs;
 	
 	public Contato() {}
-	 
 
 	public Long getId() {
 		return id;
 	}
-
 	private void setId(Long id) {
 		this.id = id;
 	}
-
+	
 	public String getNome() {
 		return nome;
 	}
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 	
-	
-	
 	public CanalEnum getCanal() {
 		return this.canal;
 	}
-
 	public void setCanal(CanalEnum canal) {
 		this.canal = canal;
 	}
+
+	
+	public String getValor() {
+		return this.valor;
+	}
+	
+	public void setValor(String valor) {
+		this.valor=valor;
+	}
+	
+	public String getObs() {
+		return this.obs;
+	}
+	
+	public void setObs(String obs) {
+		this.obs=obs;
+	}
+	
 	
 
 	@Override
