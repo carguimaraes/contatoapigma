@@ -46,8 +46,6 @@ public class ContatoResource {
 			return ResponseEntity
 				.status(HttpStatus.NOT_FOUND)
 				.body(new String[] {"Informacao nao encontrada"});
-			   
-			
 		}
 		
 	}
@@ -58,11 +56,29 @@ public class ContatoResource {
 	@RequestMapping(value = "/contatos", method = RequestMethod.GET, produces="application/json")
 	public ResponseEntity<Object>  listarPag(Pageable pag){
 		log.info("=======================GMA---> lista recurso");
+		
 	
-		Page<Contato> lstContato=  this._contatoRepository.findAll(pag );
+		Page<Contato> pageContato=  this._contatoRepository.findAll(pag );
+		
+		//TODO colocar tratamento sem pagina - 401 (Unauthorized) // 404 (Not Found)
+		// verificar no objeto pageContato
+
+		log.info("=======================GMA---> Has:"+pageContato.hasContent());
+		
+	
+		if(pageContato.hasContent()) {
+			return   ResponseEntity.ok().body(pageContato);
+		}
+		else
+		{
+			return ResponseEntity
+				.status(HttpStatus.NOT_FOUND)
+				.body(pageContato);
+		}
+	
 		
 		
-		return   ResponseEntity.ok().body(lstContato);
+		
 	}
 	
 	
