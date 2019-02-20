@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -50,11 +51,28 @@ public class ContatoResource {
 		
 	}
 
+
+	@RequestMapping(value = "/contatos/{id}", method = RequestMethod.PUT, produces="application/json")
+	public ResponseEntity<Object>  alterar( @PathVariable("id") Long id,@RequestBody Contato contato){
+
+		
+		//TODO usar DTO
+		
+		//1.Verificar se exiuste
+		//2.Existindo alterar
+		return null;
+	}
+	
+	@RequestMapping(value = "/contatos/{id}", method = RequestMethod.PUT, produces="application/json")
+	public ResponseEntity<Object>  deletar( @PathVariable("id") Long id){
+		return null;
+	}
+	
+	
 	
 	//{{baseUrl}}/?size=5&page=1&sort=nome
-
 	@RequestMapping(value = "/contatos", method = RequestMethod.GET, produces="application/json")
-	public ResponseEntity<Object>  listarPag(Pageable pag){
+	public ResponseEntity<Object>  paginar(Pageable pag){
 		log.info("=======================GMA---> lista recurso");
 		
 	
@@ -83,13 +101,13 @@ public class ContatoResource {
 	
 	
 	
+
 	
     @RequestMapping(value = "/contatos", method = RequestMethod.POST, consumes="application/json", produces="application/json")
-	public ResponseEntity<Contato>  novo(){
+	public ResponseEntity<Contato>  novo(@RequestBody Contato contato){
 	
-		Contato contato = new Contato();
-		contato.setNome("Carlos Contato 101");
-		contato.setCanal(CanalEnum.Email);
+    	//TODO montar validacao
+    	//TODO usar DTO
 		
 		contato=_contatoRepository.save(contato);
 		
