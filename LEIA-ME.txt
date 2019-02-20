@@ -32,7 +32,7 @@
 
 6. Executar os testes no [postman].   
 
-========
+================================================
 
 . Baixando projeto do github
 . Requisito: [ Git ] 
