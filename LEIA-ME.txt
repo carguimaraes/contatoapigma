@@ -1,0 +1,33 @@
+19/02/2019
+
+. Passos para gerar aplicacao rest: 
+
+. Requisito para gerar jar: [ MAVEN ]
+. Requisito para teste [ POSTMAN ]
+. Baixar projeto pasta base: [ contatoapigma ] 
+
+. Não sera explicado a configuração e execução do [ MAVEN ] - padrao.
+
+1. Importar arquivo [ Contato.yaml ] no programa [ POSTMAN ]
+ 
+2. Definir no [ POSTMAN ]  o valor para a variavel [ baseUrl ] ===> [ http://localhost:8080/api/v1/contatos ]
+   2.1. Atenção na [ baseUrl ] esta incluido o nome do recurso e versao da api [ /api/v1/contatos ]
+   2.2. A porta [8080] pode ser alterada no arquivo: [ contatoapigma/src/main/resources/application.properties ]
+   
+3. Gerar jar executavel com [ MAVEN ] -  Goals [ clean package ] - base do projeto: [ contatoapigma ] 
+   3.1. O jar executavel sera gerado no diretorio: [ contatoapigma/target ]
+   3.2. O nome do arquivo sera [contatoapigma-]+[ version  definida dentro  pom.xml ]+[.jar]
+   
+    DENTRO DO pom.xml existe:
+       
+    <groupId>com.gma</groupId>
+	<artifactId>contatoapigma</artifactId>
+	<version>1.0.0</version>
+	<packaging>jar</packaging>
+	
+   Sera gerado o arquivo: [contatoapigma-1.0.0.jar]
+   
+5. Levantar a aplicacao no sistema operacional executar: java -jar [contatoapigma-1.0.0.jar] 
+   5.1. Atencao [contatoapigma-1.0.0.jar] e para o exemplo da versao 1.0.0
+
+6. Executar os testes no [postman].   
