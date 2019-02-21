@@ -1,4 +1,4 @@
-package com.gma.contatoapi.model;
+package com.gma.contatoapi.model.entidade;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;

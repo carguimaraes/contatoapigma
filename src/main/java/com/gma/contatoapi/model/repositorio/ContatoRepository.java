@@ -1,9 +1,9 @@
-package com.gma.contatoapi.repository;
+package com.gma.contatoapi.model.repositorio;
 
 //import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-import com.gma.contatoapi.model.Contato;
+import com.gma.contatoapi.model.entidade.Contato;
 
 
 //extends PaginationAndSortingRepository

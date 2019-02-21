@@ -1,4 +1,4 @@
-package com.gma.contatoapi.model;
+package com.gma.contatoapi.model.entidade;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;

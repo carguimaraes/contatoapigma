@@ -1,4 +1,4 @@
-package com.gma.contatoapi.resource;
+package com.gma.contatoapi.aplicacao.controller;
 
 import java.net.URI;
 import java.util.Optional;
@@ -16,16 +16,16 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.gma.contatoapi.model.CanalEnum;
-import com.gma.contatoapi.model.Contato;
-import com.gma.contatoapi.repository.ContatoRepository;
+import com.gma.contatoapi.model.entidade.CanalEnum;
+import com.gma.contatoapi.model.entidade.Contato;
+import com.gma.contatoapi.model.repositorio.ContatoRepository;
 
 
 @RestController
 @RequestMapping("api/v1")
-public class ContatoResource {
+public class ContatoController {
 	
-	private static final Logger log = LoggerFactory.getLogger(ContatoResource.class);
+	private static final Logger log = LoggerFactory.getLogger(ContatoController.class);
 	
 	@Autowired
 	private ContatoRepository _contatoRepository;
@@ -63,9 +63,24 @@ public class ContatoResource {
 		return null;
 	}
 	
-	@RequestMapping(value = "/contatos/{id}", method = RequestMethod.PUT, produces="application/json")
+	@RequestMapping(value = "/contatos/{id}", method = RequestMethod.DELETE, produces="application/json")
 	public ResponseEntity<Object>  deletar( @PathVariable("id") Long id){
-		return null;
+		Optional<Contato> optContato=  this._contatoRepository.findById(id);
+		
+		 
+		if(optContato.isPresent()) {
+			
+			this._contatoRepository.delete(optContato.get());
+			
+			return ResponseEntity.noContent().build();
+		}
+		else
+		{
+			return ResponseEntity
+				.status(HttpStatus.NOT_FOUND)
+				.body(new String[] {"Informacao nao encontrada"});
+		}
+
 	}
 	
 	
