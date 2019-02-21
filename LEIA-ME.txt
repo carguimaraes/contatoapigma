@@ -59,6 +59,7 @@
 3. Fatorar e retirar codigo de validacao do controller - criar servico de camada de aplicacao e criar servico de camada de model
 4. Mensagens de erros genericas nao foram colocadas no padrao (String[])
 5. Estou permitindo observacao Null - Mostro o null
+6. Testar - Java CORS Filter - deve ser testado -  Api ser consumida por aplicacoes fora do dominio 
 
 
 
