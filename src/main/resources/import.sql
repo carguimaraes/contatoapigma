@@ -20,5 +20,16 @@ insert into CONTATO_TB (nome,canal,valor,obs) values ('Alberto Carlos','Email','
 insert into CONTATO_TB (nome,canal,valor,obs) values ('Martins Guimaraes','Email','mg@gma.com.br','carlos 111');
 insert into CONTATO_TB (nome,canal,valor,obs) values ('Guimaraes Carlos Alberto','Email','guima.car@gma.com.br','carlos 111');
 insert into CONTATO_TB (nome,canal,valor,obs) values ('Luciano Carlos Guimaraes','Email','luc.car.guima@gma.com.br','alberto 222111');
-
+insert into CONTATO_TB (nome,canal,valor,obs) values ('Luciana','Celular','55 21 2226789','luciana teste');
+insert into CONTATO_TB (nome,canal,valor,obs) values ('Maria Helena','Celular','55 21 4446789','yyyy teste');
+insert into CONTATO_TB (nome,canal,valor,obs) values ('Claudia Fernanda','Celular','55 21 2227777','3333 teste');
+insert into CONTATO_TB (nome,canal,valor,obs) values ('Luciana Ameridiniz','Celular','55 21 2225433','4444 teste');
+insert into CONTATO_TB (nome,canal,valor,obs) values ('Candida Luciana','Celular','55 21 2226789','ttttyy teste');
+insert into CONTATO_TB (nome,canal,valor,obs) values ('Helena Maria','Celular','55 21 4446789','ttttteste');
+insert into CONTATO_TB (nome,canal,valor,obs) values ('Fernanda Claudia','Celular','55 21 2227777','tttt teste');
+insert into CONTATO_TB (nome,canal,valor,obs) values ('Adriana Ameridiniz','Celular','55 21 2225433','rrr teste');
+insert into CONTATO_TB (nome,canal,valor,obs) values ('Ruana Fernandez','Celular','55 21 3325433','rrr teste');
+insert into CONTATO_TB (nome,canal,valor,obs) values ('Tonha Periciana','Celular','55 21 2525433','rrr teste');
+insert into CONTATO_TB (nome,canal,valor,obs) values ('Zelda Tuicard','Fixo','55 21 4448888','rrr teste');
+insert into CONTATO_TB (nome,canal,valor,obs) values ('Froadritriz Geromina','Celular','55 21 555433','rrr teste');
 
