@@ -25,7 +25,8 @@ public class CorsFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
-    	System.out.println("nooooooooooooooooooo filtro");
+    	//TODO retirar!
+    	System.out.println("GMA: nooooooooooooooooooo filtro");
      
         HttpServletResponse _response = (HttpServletResponse) response;
         _response.setHeader("Access-Control-Allow-Origin", "http://localhost:*");

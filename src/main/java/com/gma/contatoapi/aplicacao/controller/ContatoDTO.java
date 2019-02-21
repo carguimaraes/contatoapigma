@@ -1,7 +1,6 @@
 package com.gma.contatoapi.aplicacao.controller;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /*
@@ -27,7 +26,7 @@ public class ContatoDTO {
 	@Size(max=30,message="Valor muito longo, tamanho maximo [30] caracteres")
 	private String valor;
 	
-	@Size(max=30,message="Observacaor muito longa, tamanho maximo [30] caracteres")
+	@Size(max=30,message="Observacao muito longa, tamanho maximo [30] caracteres")
 	private String obs;
 
 	public Long getId() {
