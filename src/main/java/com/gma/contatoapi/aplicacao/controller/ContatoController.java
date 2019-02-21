@@ -2,6 +2,9 @@ package com.gma.contatoapi.aplicacao.controller;
 
 import java.net.URI;
 import java.util.Optional;
+
+import javax.persistence.EnumType;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -48,34 +51,34 @@ public class ContatoController {
 	@RequestMapping(value = "/contatos/{id}", method = RequestMethod.PUT, produces = "application/json")
 	public ResponseEntity<Object> alterar(@PathVariable("id") Long id, @RequestBody ContatoDTO contatoDTO) {
 
-		
 		// 1.Verificar se exiuste
 		// 2.Existindo alterar
-		
+
 		Optional<Contato> optContato = this._contatoRepository.findById(id);
 
-		if (optContato.isPresent()) {
-
-			log.info("=======================GMA---> Altera:"+contatoDTO.getNome()+" - "+contatoDTO.getCanal() );
-			
-			
-			Contato contato=optContato.get();
-			
-			contato.setNome(contatoDTO.getNome());
-		//	contato.setCanal(contatoDTO.getCanal());
-			contato.setValor(contatoDTO.getValor());
-			contato.setObs(contatoDTO.getObs());
-			
-			this._contatoRepository.save(contato);
-			
-			return ResponseEntity.noContent().build();
-			
-		} else {
-			
+		if (!optContato.isPresent()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new String[] { "Informacao nao encontrada" });
 		}
 
-		
+		log.info("=======================GMA---> Altera:" + contatoDTO.getNome() + " - " + contatoDTO.getCanal());
+
+		try {
+			CanalEnum canal = CanalEnum.valueOf(contatoDTO.getCanal());
+			Contato contato = optContato.get();
+			contato.setNome(contatoDTO.getNome());
+			contato.setCanal(canal);
+			contato.setValor(contatoDTO.getValor());
+			contato.setObs(contatoDTO.getObs());
+			this._contatoRepository.save(contato);
+			
+			return ResponseEntity.noContent().build();
+
+		} catch (IllegalArgumentException ex) {
+
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+					.body(new String[] { "Tipo de canal invalido. Usar: [Email, Fixp, Celular]" });
+		}
+
 	}
 
 	@RequestMapping(value = "/contatos/{id}", method = RequestMethod.DELETE, produces = "application/json")
@@ -86,7 +89,6 @@ public class ContatoController {
 		if (optContato.isPresent()) {
 
 			this._contatoRepository.delete(optContato.get());
-			
 
 			return ResponseEntity.noContent().build();
 		} else {
