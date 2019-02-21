@@ -135,21 +135,12 @@ public class ContatoController {
 	}
 
 	@RequestMapping(value = "/contatos", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
-	public ResponseEntity<Object> novo(@Valid @RequestBody ContatoDTO contatoDTO) {
-
+	//public ResponseEntity<Object> novo(@Valid @RequestBody ContatoDTO contatoDTO) 
+	public ResponseEntity<Object> novo(@RequestBody ContatoDTO contatoDTO) {
 		
-		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-		Validator validator = factory.getValidator();
+		List<String> lst=_getMsgErro(contatoDTO);		
 		
-		Set<ConstraintViolation<ContatoDTO>> violations = validator.validate(contatoDTO);
-		
-		
-		if(!violations.isEmpty()) {
-			
-			List<String> lst=new ArrayList<String>();
-			for (ConstraintViolation<ContatoDTO> violation : violations) {
-			    lst.add(violation.getMessage());
-			}
+		if(!lst.isEmpty()) {
 			
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
 					.body(lst.toArray());
@@ -176,8 +167,32 @@ public class ContatoController {
 		}
 		
 		
-
+				
+	}
+	
+	private List<String> _getMsgErro(ContatoDTO contatoDTO) {
 		
+		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+		Validator validator = factory.getValidator();
+		
+		Set<ConstraintViolation<ContatoDTO>> violations = validator.validate(contatoDTO);
+
+		List<String> lst=new ArrayList<String>();
+		
+		violations.forEach( (item)->{ lst.add( item.getMessage());});
+	
+		/*
+		if(!violations.isEmpty()) {
+			
+
+			for (ConstraintViolation<ContatoDTO> violation : violations) {
+			    lst.add(violation.getMessage());
+			}
+			
+		
+		}
+		*/
+		return lst;
 	}
 
 }

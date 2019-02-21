@@ -1,5 +1,6 @@
 package com.gma.contatoapi.aplicacao.controller;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -7,14 +8,16 @@ public class ContatoDTO {
 
 	private Long id;
 	
-	@NotNull(message = "Nome nao pode ser nulo")
+	
+	@NotBlank(message="Nome deve ser informado")
 	@Size(min=5, message="Nome deve ter no minimo [5] caracteres")
 	@Size(max=30,message="Nome muito longo, tamanho maximo [30] caracteres")
 	private String nome;
 	
+	@NotBlank(message="Canal deve ser informado")
 	private String canal;
 	
-	@NotNull(message = "Valor nao pode ser nulo")
+	@NotBlank(message="Valor deve ser informado")
 	@Size(min=5, message="Valor deve ter no minimo [5] caracteres")
 	@Size(max=30,message="Valor muito longo, tamanho maximo [30] caracteres")
 	private String valor;

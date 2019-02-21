@@ -42,5 +42,13 @@
 3. Entre na pasta [ javawork ]
 4. Executar : git clone https://github.com/carguimaraes/contatoapigma.git
 
+================== 
+. Melhorias
+
+1. Na inclusao e alteracao esta sendo permitido incluir nomes com espaco na frente
+2.
+
+
+
 
 
