@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.persistence.EnumType;
 import javax.validation.ConstraintViolation;
@@ -33,6 +34,18 @@ import com.gma.contatoapi.model.entidade.CanalEnum;
 import com.gma.contatoapi.model.entidade.Contato;
 import com.gma.contatoapi.model.repositorio.ContatoRepository;
 
+/*
+ * 2019-02-21
+ * GMA - Carlos A L M Guimaraes
+ * 
+ */
+
+/*
+ * Atencao: O codigo deste controller pode ser fatorado, retirar logicas de validacao e colocar em servicos
+ * 
+ */
+
+
 @RestController
 @RequestMapping("api/v1")
 public class ContatoController {
@@ -54,6 +67,8 @@ public class ContatoController {
 		}
 
 	
+		//TODO retornar ContatoDTO
+		
 		return ResponseEntity.ok().body(optContato.get());
 	
 	}
@@ -70,6 +85,15 @@ public class ContatoController {
 
 		log.info("=======================GMA---> Altera:" + contatoDTO.getNome() + " - " + contatoDTO.getCanal());
 
+		List<String> lst=_getMsgErro(contatoDTO);		
+		
+		if(!lst.isEmpty()) {
+			
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+					.body(lst);
+		}
+		
+		
 		try {
 			CanalEnum canal = CanalEnum.valueOf(contatoDTO.getCanal());
 			Contato contato = optContato.get();
@@ -136,6 +160,7 @@ public class ContatoController {
 
 	@RequestMapping(value = "/contatos", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
 	//public ResponseEntity<Object> novo(@Valid @RequestBody ContatoDTO contatoDTO) 
+	//Optei por nao usar o @Valid para nao ter que ajustar mensagem de retorno
 	public ResponseEntity<Object> novo(@RequestBody ContatoDTO contatoDTO) {
 		
 		List<String> lst=_getMsgErro(contatoDTO);		
@@ -143,9 +168,9 @@ public class ContatoController {
 		if(!lst.isEmpty()) {
 			
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-					.body(lst.toArray());
+					.body(lst);
 		}
-		
+
 		try {
 			Contato contato= new Contato();
 			CanalEnum canal = CanalEnum.valueOf(contatoDTO.getCanal());
@@ -177,21 +202,15 @@ public class ContatoController {
 		
 		Set<ConstraintViolation<ContatoDTO>> violations = validator.validate(contatoDTO);
 
-		List<String> lst=new ArrayList<String>();
-		
-		violations.forEach( (item)->{ lst.add( item.getMessage());});
+	//	List<String> lst=new ArrayList<String>();
+	//	violations.forEach( (item)->{ lst.add( item.getMessage());});
 	
-		/*
-		if(!violations.isEmpty()) {
-			
-
-			for (ConstraintViolation<ContatoDTO> violation : violations) {
-			    lst.add(violation.getMessage());
-			}
-			
+		List<String> lst= violations
+							.stream()
+							.map( item->  item.getMessage())
+							.collect(Collectors.toList());
 		
-		}
-		*/
+		 
 		return lst;
 	}
 

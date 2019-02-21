@@ -1,4 +1,13 @@
 19/02/2019
+21/02/2019 (00:01 h)
+
+ GMA = Guimaraes
+ 
+ /*
+ * 2019-02-21
+ * GMA - Carlos A L M Guimaraes
+ * 
+ */
 
 . Passos para gerar aplicacao rest: 
 
@@ -46,7 +55,10 @@
 . Melhorias
 
 1. Na inclusao e alteracao esta sendo permitido incluir nomes com espaco na frente
-2.
+2. Nao foi validado formato e-mail
+3. Fatorar e retirar codigo de validacao do controller - criar servico de camada de aplicacao e criar servico de camada de model
+4. Mensagens de erros genericas nao foram colocadas no padrao (String[])
+5. Estou permitindo observacao Null - Mostro o null
 
 
 

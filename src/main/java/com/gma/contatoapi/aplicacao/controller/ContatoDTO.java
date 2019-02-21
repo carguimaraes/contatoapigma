@@ -4,6 +4,11 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+/*
+ * 2019-02-21
+ * GMA - Carlos A L M Guimaraes
+ * 
+ */
 public class ContatoDTO {
 
 	private Long id;

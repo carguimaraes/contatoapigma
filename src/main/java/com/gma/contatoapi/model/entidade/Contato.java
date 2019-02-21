@@ -10,6 +10,11 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+/*
+ * 2019-02-21
+ * GMA - Carlos A L M Guimaraes
+ * 
+ */
 @Entity
 @Table(name="CONTATO_TB")
 public class Contato {
