@@ -126,17 +126,32 @@ public class ContatoController {
 	}
 
 	@RequestMapping(value = "/contatos", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
-	public ResponseEntity<Contato> novo(@RequestBody Contato contato) {
+	public ResponseEntity<Object> novo(@RequestBody ContatoDTO contatoDTO) {
 
-		// TODO montar validacao
-		// TODO usar DTO
+		
+		try {
+			Contato contato= new Contato();
+			CanalEnum canal = CanalEnum.valueOf(contatoDTO.getCanal());
+			contato.setNome(contatoDTO.getNome());
+			contato.setCanal(canal);
+			contato.setValor(contatoDTO.getValor());
+			contato.setObs(contatoDTO.getObs());
+			contato=this._contatoRepository.save(contato);
+			
+			URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(contato.getId())
+					.toUri();
 
-		contato = _contatoRepository.save(contato);
+			return ResponseEntity.created(location).build();
 
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(contato.getId())
-				.toUri();
+		} catch (IllegalArgumentException ex) {
 
-		return ResponseEntity.created(location).build();
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+					.body(new String[] { "Tipo de canal invalido. Usar: [Email, Fixp, Celular]" });
+		}
+		
+		
+
+		
 	}
 
 }
