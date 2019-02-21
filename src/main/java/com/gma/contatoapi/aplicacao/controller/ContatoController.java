@@ -1,9 +1,17 @@
 package com.gma.contatoapi.aplicacao.controller;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.persistence.EnumType;
+import javax.validation.ConstraintViolation;
+import javax.validation.Valid;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -36,24 +44,24 @@ public class ContatoController {
 
 	@RequestMapping(value = "/contatos/{id}", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<Object> buscar(@PathVariable("id") Long id) {
+		
 		log.info("=======================GMA---> Buscar  id:" + id);
 
 		Optional<Contato> optContato = this._contatoRepository.findById(id);
-
-		if (optContato.isPresent()) {
-			return ResponseEntity.ok().body(optContato.get());
-		} else {
+		
+		if (!optContato.isPresent()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new String[] { "Informacao nao encontrada" });
 		}
 
+	
+		return ResponseEntity.ok().body(optContato.get());
+	
 	}
 
 	@RequestMapping(value = "/contatos/{id}", method = RequestMethod.PUT, produces = "application/json")
 	public ResponseEntity<Object> alterar(@PathVariable("id") Long id, @RequestBody ContatoDTO contatoDTO) {
 
-		// 1.Verificar se exiuste
-		// 2.Existindo alterar
-
+	
 		Optional<Contato> optContato = this._contatoRepository.findById(id);
 
 		if (!optContato.isPresent()) {
@@ -85,15 +93,16 @@ public class ContatoController {
 	public ResponseEntity<Object> deletar(@PathVariable("id") Long id) {
 
 		Optional<Contato> optContato = this._contatoRepository.findById(id);
-
-		if (optContato.isPresent()) {
-
-			this._contatoRepository.delete(optContato.get());
-
-			return ResponseEntity.noContent().build();
-		} else {
+		
+		if (!optContato.isPresent()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new String[] { "Informacao nao encontrada" });
 		}
+
+		
+		this._contatoRepository.delete(optContato.get());
+
+		return ResponseEntity.noContent().build();
+		
 
 	}
 
@@ -126,8 +135,25 @@ public class ContatoController {
 	}
 
 	@RequestMapping(value = "/contatos", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
-	public ResponseEntity<Object> novo(@RequestBody ContatoDTO contatoDTO) {
+	public ResponseEntity<Object> novo(@Valid @RequestBody ContatoDTO contatoDTO) {
 
+		
+		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+		Validator validator = factory.getValidator();
+		
+		Set<ConstraintViolation<ContatoDTO>> violations = validator.validate(contatoDTO);
+		
+		
+		if(!violations.isEmpty()) {
+			
+			List<String> lst=new ArrayList<String>();
+			for (ConstraintViolation<ContatoDTO> violation : violations) {
+			    lst.add(violation.getMessage());
+			}
+			
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+					.body(lst.toArray());
+		}
 		
 		try {
 			Contato contato= new Contato();

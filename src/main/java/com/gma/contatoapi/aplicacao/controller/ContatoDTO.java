@@ -1,14 +1,39 @@
 package com.gma.contatoapi.aplicacao.controller;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class ContatoDTO {
 
+	private Long id;
+	
+	@NotNull(message = "Nome nao pode ser nulo")
+	@Size(min=5, message="Nome deve ter no minimo [5] caracteres")
+	@Size(max=30,message="Nome muito longo, tamanho maximo [30] caracteres")
 	private String nome;
+	
 	private String canal;
+	
+	@NotNull(message = "Valor nao pode ser nulo")
+	@Size(min=5, message="Valor deve ter no minimo [5] caracteres")
+	@Size(max=30,message="Valor muito longo, tamanho maximo [30] caracteres")
 	private String valor;
+	
+	@Size(max=30,message="Observacaor muito longa, tamanho maximo [30] caracteres")
 	private String obs;
 
+	public Long getId() {
+		return this.id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	
+
 	public String getNome() {
-		return nome;
+		return this.nome;
 	}
 
 	public void setNome(String nome) {
@@ -16,7 +41,7 @@ public class ContatoDTO {
 	}
 
 	public String getCanal() {
-		return canal;
+		return this.canal;
 	}
 
 	public void setCanal(String canal) {
@@ -24,7 +49,7 @@ public class ContatoDTO {
 	}
 
 	public String getValor() {
-		return valor;
+		return this.valor;
 	}
 
 	public void setValor(String valor) {
@@ -32,7 +57,7 @@ public class ContatoDTO {
 	}
 
 	public String getObs() {
-		return obs;
+		return this.obs;
 	}
 
 	public void setObs(String obs) {
