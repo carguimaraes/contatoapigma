@@ -1,0 +1,24 @@
+{
+  "id" : "3909457f-9221-401f-bdda-19463700542b",
+  "name" : "api_v1_contatos",
+  "request" : {
+    "url" : "/api/v1/contatos",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\"content\":[{\"id\":30,\"nome\":\"Adriana Ameridiniz-GMA\",\"canal\":\"Celular\",\"valor\":\"55 21 2225433\",\"obs\":\"rrr teste\"},{\"id\":19,\"nome\":\"Alberto Carlos\",\"canal\":\"Email\",\"valor\":\"alberto.ar@gma.com.br\",\"obs\":\"alberto 111\"},{\"id\":8,\"nome\":\"Alberto Luciano\",\"canal\":\"Email\",\"valor\":\"alberto@gma.com.br\",\"obs\":\"alberto 111\"},{\"id\":4,\"nome\":\"Andreia 04\",\"canal\":\"Celular\",\"valor\":\"55 21 22346745\",\"obs\":\"obs 111\"},{\"id\":15,\"nome\":\"Andreia 05\",\"canal\":\"Celular\",\"valor\":\"55 21 22346745\",\"obs\":\"obs 111\"},{\"id\":27,\"nome\":\"Candida Luciana\",\"canal\":\"Celular\",\"valor\":\"55 21 2226789\",\"obs\":\"ttttyy teste\"},{\"id\":2,\"nome\":\"Carla 02\",\"canal\":\"Email\",\"valor\":\"xpto@gma.com.br\",\"obs\":\"obs 111\"},{\"id\":13,\"nome\":\"Carla 03\",\"canal\":\"Email\",\"valor\":\"xpto@gma.com.br\",\"obs\":\"obs 111\"},{\"id\":6,\"nome\":\"Carlos 01\",\"canal\":\"Email\",\"valor\":\"car1@gma.com.br\",\"obs\":\"carlos 111\"},{\"id\":7,\"nome\":\"Carlos 02\",\"canal\":\"Email\",\"valor\":\"car2@gma.com.br\",\"obs\":\"carlos 111\"}],\"pageable\":{\"sort\":{\"sorted\":true,\"unsorted\":false},\"pageSize\":10,\"pageNumber\":0,\"offset\":0,\"paged\":true,\"unpaged\":false},\"last\":false,\"totalPages\":4,\"totalElements\":34,\"first\":true,\"numberOfElements\":10,\"sort\":{\"sorted\":true,\"unsorted\":false},\"size\":10,\"number\":0}",
+    "headers" : {
+      "Access-Control-Allow-Origin" : "http://localhost:*",
+      "Access-Control-Allow-Credentials" : "true",
+      "Access-Control-Allow-Methods" : "POST, GET, PUT, OPTIONS, DELETE",
+      "Access-Control-Max-Age" : "3600",
+      "Access-Control-Allow-Headers" : "X-Requested-With, X-XSRF-Token, X-XSS-Protection, Content-Type, Authorization, Origin, Accept, Access-Control-Request-Method, Access-Control-Request-Headers",
+      "Content-Type" : "application/json;charset=UTF-8",
+      "Date" : "Mon, 18 Mar 2019 18:45:03 GMT"
+    }
+  },
+  "uuid" : "3909457f-9221-401f-bdda-19463700542b",
+  "persistent" : true,
+  "insertionIndex" : 1
+}

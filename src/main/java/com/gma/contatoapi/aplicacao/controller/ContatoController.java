@@ -41,7 +41,7 @@ import com.gma.contatoapi.model.repositorio.ContatoRepository;
  * 
  */
 
-
+//http://localhost:8089/api/v1/contatos
 @RestController
 @RequestMapping("api/v1")
 public class ContatoController {

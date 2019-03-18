@@ -1,0 +1,19 @@
+18/3/2019
+
+1. start api 
+
+http://localhost:8089/api/v1/contatos
+
+
+2. start serv wiremock
+
+java -jar wiremock-standalone-2.22.0.jar
+
+3. inicia a gravacao (http://localhost:8089)
+
+http://localhost:8080/__admin/recorder/ 
+(target URL: http://localhost:8089)
+
+4.
+   curl http://localhost:8080/api/v1/contatos
+5. stop 
